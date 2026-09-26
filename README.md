@@ -1,18 +1,34 @@
-# Constraint-Enforced Logistics Optimization (Toy Problem)
+# Constraint-Enforced Logistics Network Optimization via PyTorch
 
-A proof-of-concept repository applying custom loss functions in PyTorch to enforce capacity and demand constraints in a multi-node supply chain network. 
+## A Proof-of-Concept (PoC) applying gradient-based penalty relaxation to multi-node supply chain allocation problems.
 
-This project was developed as a personal exploration into Operations Research (OR) and Mathematical Programming, aimed at my application to the **Department of Industrial Engineering at UNIST**.
+This repository presents a minimal academic simulation of a constrained logistics network (5 Hubs, 20 Demand Nodes) developed for my undergraduate application to the **Department of Industrial Engineering at UNIST**.
 
-## Motivation
-Inspired by research on distributed optimization and real-time network operations, this notebook demonstrates a simplified Machine Learning approach to solving constrained logistics problems. Instead of relying purely on standard linear solvers, it uses gradient descent and penalty heuristics to enforce strict physical limits (hub capacities) and service requirements (node demands).
+It bridges **predictive analytics (Business Analytics)** and **prescriptive operations research (OR)** by demonstrating how neural gradient descent can respect explicit physical bounds without relying exclusively on traditional MILP solvers.
 
-## Repository Contents
-- `Logistics_Optimization_PoC.ipynb`: The main notebook containing mathematical formulations (Objective Function & Constraints), PyTorch custom loss implementation, and network visualization.
-- `hubs.csv`: Synthetic data representing 5 Distribution Hubs with capacity limits.
-- `nodes.csv`: Synthetic data representing 20 Delivery Nodes with specific demands.
+### Key Features & Technical Highlights
 
-## Optimization Logic
-The model avoids "trivial solutions" (e.g., zero transport flow) by employing a two-part penalty constraint alongside the transport cost minimization:
-1. **Capacity Penalty:** Penalizes the model if outflow exceeds maximum storage.
-2. **Demand Penalty:** Penalizes the model if inflow fails to meet customer demand.
+* **Mathematical Formulation:** Explicit definition of transport cost minimization subject to hub capacity limits and demand requirements.
+* **Custom PyTorch Penalty Loss:** Implements continuous `torch.relu` loss functions to penalize capacity overflow and under-delivery during backpropagation.
+* **Trivial Solution Avoidance:** Overcomes the trivial $X=0$ zero-flow edge case by enforcing dual-sided penalty bounds (Outflow vs. Inflow).
+* **Synthetic Dataset Pipeline:** Includes standalone Python scripts to generate spatial topology data (`hubs.csv`, `nodes.csv`).
+* **Network Visualization:** Integrated `matplotlib` scripts rendering hub capacity distributions and node demand coordinates.
+
+### Mathematical Model
+
+#### Objective Function (Cost Minimization)
+$$\min \sum_{i=1}^{m} \sum_{j=1}^{n} c_{ij} x_{ij}$$
+
+#### Operational Constraints
+* **Hub Capacity:** $\sum_{j=1}^{n} x_{ij} \leq C_i \quad \forall i \in \{1, \dots, m\}$
+* **Node Demand:** $\sum_{i=1}^{m} x_{ij} \geq D_j \quad \forall j \in \{1, \dots, n\}$
+
+### Repository Contents
+
+* `Logistics_Optimization_PoC.ipynb` : Main Jupyter Notebook containing formulations, code implementation, training loops, and plots.
+* `hubs.csv` : Dataset containing coordinates and capacity bounds for 5 distribution hubs.
+* `nodes.csv` : Dataset containing coordinates and demand requirements for 20 delivery nodes.
+
+### Future Academic Goals at UNIST
+
+While effective for this toy problem, simple penalty methods can face convergence challenges in high-dimensional networks. At UNIST, I aim to explore advanced exact and dynamic techniques—such as **Lagrangian Relaxation** and **ADMM**—to scale optimization models for complex industrial systems.
