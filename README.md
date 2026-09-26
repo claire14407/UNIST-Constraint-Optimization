@@ -1,5 +1,4 @@
 # Constraint-Enforced Logistics Network Optimization via PyTorch
-
 ## A Proof-of-Concept (PoC) applying gradient-based penalty relaxation to multi-node supply chain allocation problems.
 
 This repository presents a minimal academic simulation of a constrained logistics network (5 Hubs, 20 Demand Nodes) developed for my undergraduate application to the **Department of Industrial Engineering at UNIST**.
