@@ -1,18 +1,13 @@
 # Constraint-Enforced Logistics Network Optimization via PyTorch
 ## A Proof-of-Concept (PoC) applying gradient-based penalty relaxation to multi-node supply chain allocation problems.
-
 This repository presents a minimal academic simulation of a constrained logistics network (5 Hubs, 20 Demand Nodes) developed for my undergraduate application to the **Department of Industrial Engineering at UNIST**.
-
 It bridges **predictive analytics (Business Analytics)** and **prescriptive operations research (OR)** by demonstrating how neural gradient descent can respect explicit physical bounds without relying exclusively on traditional MILP solvers.
-
 ### Key Features & Technical Highlights
-
 * **Mathematical Formulation:** Explicit definition of transport cost minimization subject to hub capacity limits and demand requirements.
 * **Custom PyTorch Penalty Loss:** Implements continuous `torch.relu` loss functions to penalize capacity overflow and under-delivery during backpropagation.
 * **Trivial Solution Avoidance:** Overcomes the trivial $X=0$ zero-flow edge case by enforcing dual-sided penalty bounds (Outflow vs. Inflow).
 * **Synthetic Dataset Pipeline:** Includes standalone Python scripts to generate spatial topology data (`hubs.csv`, `nodes.csv`).
 * **Network Visualization:** Integrated `matplotlib` scripts rendering hub capacity distributions and node demand coordinates.
-
 ### Mathematical Model
 
 #### Objective Function (Cost Minimization)
