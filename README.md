@@ -31,4 +31,4 @@ $$\min \sum_{i=1}^{m} \sum_{j=1}^{n} c_{ij} x_{ij}$$
 
 ### Future Academic Goals at UNIST
 
-While effective for this toy problem, simple penalty methods can face convergence challenges in high-dimensional networks. At UNIST, I aim to explore advanced exact and dynamic techniques—such as **Lagrangian Relaxation** and **ADMM**—to scale optimization models for complex industrial systems.
+While effective for this toy problem, simple penalty methods can face convergence challenges in high-dimensional networks. At UNIST, I aim to explore advanced exact and dynamic techniques, such as **Lagrangian Relaxation** and **ADMM**, to scale optimization models for complex industrial systems.
